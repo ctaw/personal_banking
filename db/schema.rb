@@ -11,10 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426054610) do
+ActiveRecord::Schema.define(version: 20160426063405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "client_code"
+    t.integer  "status"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "company_name"
+    t.text     "address"
+    t.string   "contact_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "credits", force: :cascade do |t|
+    t.decimal  "amount"
+    t.string   "transaction_type_id"
+    t.text     "note"
+    t.integer  "on_notification"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transaction_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "client_id"
+    t.string   "client_code"
+    t.datetime "trasaction_date"
+    t.integer  "credit_id"
+    t.integer  "debit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
