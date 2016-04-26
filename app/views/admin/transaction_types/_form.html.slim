@@ -1,0 +1,24 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Add Transaction Type
+      .panel-body
+        = form_for([:admin, @transaction_type], :html => {:class => "form-horizontal form-border"}) do |f|
+          .col-md-12
+            .form-group
+              label.col-sm-3.control-label Name
+              .col-sm-6
+                = f.text_field :name, :class=>"form-control"
+
+            .form-group
+              label.col-sm-3.control-label Description
+              .col-sm-6
+                = f.text_area :name, :class=>"form-control", :row=>5
+
+          .row
+            .col-md-12
+              hr
+              .btn-group.pull-right
+                a.btn.btn-default href="/admin/transaction_types" Cancel
+                = f.submit "Save", :class => "btn btn-success"

@@ -1,0 +1,24 @@
+.container
+  .row
+    .page-header
+      h1 Transaction
+      p.lead Transaction Types
+    br
+
+  .row
+    .col-md-12
+      .panel.panel-default#divPrint
+        .panel-heading
+          h3.panel-title.main-title Transaction Type Details
+        .panel-body
+          .col-md-6
+            .row
+              label.col-lg-3 Name
+              .col-lg-6 = @transaction_type.name
+            .row
+              label.col-lg-3 Description
+              .col-lg-6 = @transaction_type.description
+
+      .btn-group.pull-right aria-label="..." role="group"
+        a.button.btn.btn-default href="/admin/transaction_types" Back
+        a.button.btn.btn-primary href="/admin/transaction_types/#{@transaction_type.id}/edit" Edit

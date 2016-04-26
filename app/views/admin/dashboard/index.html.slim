@@ -6,3 +6,58 @@
     .well
       h4 Welcome Admin!
       p Cras j usto odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.
+
+br
+hr
+br
+
+.row
+	.col-md-12
+		.col-md-7
+			p.title Users
+			.table-responsive
+				table.table.table-bordered.table-striped
+					thead
+						tr
+							th ID
+							th Email
+							th
+					tbody
+						-if @users == []
+							tr
+								td colspan="3" No records
+						-else
+						 - @users.each do |u|
+							 tr
+								td = u.id
+								td = u.email
+								td style=('width: 2%;')
+									a href="users/#{u.id}"
+										i.fa.fa-eye
+				=will_paginate @users, :param_name=>"users",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
+
+		.col-md-5
+			.row
+				p.title Transaction Types
+			.row
+				.table-responsive
+					table.table.table-bordered.table-striped
+						thead
+							tr
+								th ID
+								th Name
+								th
+						tbody
+							-if @transaction_types == []
+								tr
+									td colspan="3" No records
+							-else
+							 - @transaction_types.each do |tt|
+								 tr
+									td = tt.id
+									td = tt.name
+									td style=('width: 2%;')
+										a href="transaction_types/#{tt.id}"
+											i.fa.fa-eye
+
+					=will_paginate @transaction_types, :param_name=>"transaction_types",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe

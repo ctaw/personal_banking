@@ -1,0 +1,39 @@
+.container
+  .row
+    .page-header
+      h1 Transaction
+      p.lead Transaction Types
+    .pull-right
+      a href="transaction_types/new" class="btn btn-primary" Add
+    br
+    br
+    br
+    .row
+      .col-md-12
+        .table-responsive
+          table.table.table-bordered.table-striped.transaction_types-table
+            thead
+              tr
+                th ID
+                th Name
+                th Description
+                th
+            tbody
+              -if @transaction_types == []
+                tr
+                  td colspan="4" No records
+              -else
+               - @transaction_types.each do |tt|
+                 tr
+                  td = tt.id
+                  td = tt.name
+                  td = tt.description
+                  td style=('width: 2%;')
+                    a href="transaction_types/#{tt.id}"
+                      i.fa.fa-eye
+
+javascript:
+  $('.transaction_types-table').DataTable({
+    responsive: true,
+    "pagingType": "full_numbers"
+  });
