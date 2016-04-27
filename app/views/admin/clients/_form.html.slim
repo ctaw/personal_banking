@@ -1,0 +1,51 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Add Client
+      .panel-body
+        = form_for([:admin, @client], :html => {:class => "form-horizontal form-border"}) do |f|
+          .col-md-12
+
+            .form-group
+              label.col-sm-3.control-label Plate Number
+              .col-sm-6
+                = f.text_field :plate_number, :class=>"form-control"
+
+            .form-group
+              label.col-sm-3.control-label First Name
+              .col-sm-6
+                = f.text_field :first_name, :class=>"form-control"
+
+            .form-group
+              label.col-sm-3.control-label Middle Name
+              .col-sm-6
+                = f.text_field :middle_name, :class=>"form-control"
+
+            .form-group
+              label.col-sm-3.control-label Last Name
+              .col-sm-6
+                = f.text_field :last_name, :class=>"form-control"
+
+            .form-group
+              label.col-sm-3.control-label Company
+              .col-sm-6
+                = f.text_field :company_name, :class=>"form-control"
+
+            .form-group
+              label.col-sm-3.control-label Contact Number
+              .col-sm-6
+                = f.text_field :contact_number, :class=>"form-control"
+
+
+            .form-group
+              label.col-sm-3.control-label Address
+              .col-sm-6
+                = f.text_area :address, :class=>"form-control", :row=>5
+
+          .row
+            .col-md-12
+              hr
+              .btn-group.pull-right
+                a.btn.btn-default href="/admin/clients" Cancel
+                = f.submit "Save", :class => "btn btn-success"
