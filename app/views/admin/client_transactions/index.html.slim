@@ -1,0 +1,41 @@
+.container
+  .row
+    .page-header
+      h1 Transaction
+      p.lead Transaction History
+    .pull-right
+      a href="client_transactions/new" class="btn btn-primary" Add New Transaction
+    br
+    br
+    br
+    .row
+      .col-md-12
+        .table-responsive
+          table.table.table-bordered.table-striped.transaction-table
+            thead
+              tr
+                th ID
+                th Plate Number
+                th Client
+                th Transaction Date
+                th
+            tbody
+              -if @client_transactions == []
+                tr
+                  td colspan="5" No records
+              -else
+               - @client_transactions.each do |ct|
+                 tr
+                  td = ct.id
+                  td = ct.plate_number
+                  td = ct.client_name
+                  td = format_date(ct.transaction_date)
+                  td style=('width: 2%;')
+                    a href="client_transactions/#{ct.id}"
+                      i.fa.fa-eye
+
+javascript:
+  $('.transaction-table').DataTable({
+    responsive: true,
+    "pagingType": "full_numbers"
+  });

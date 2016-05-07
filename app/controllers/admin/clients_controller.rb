@@ -3,7 +3,7 @@ class Admin::ClientsController < AdminController
 	before_action :set_client_id, :only=> [:show, :edit, :update, :destroy]
 
 	def index
-		@clients = Client.select("id, client_code, first_name, last_name, company_name, plate_number").order("id ASC")
+		@clients = Client.select("id, client_code, name, plate_number").order("id ASC")
 	end
 
   def new
@@ -45,7 +45,6 @@ class Admin::ClientsController < AdminController
   end
 
   def client_params
-		params.require(:client).permit(:client_code, :status, :first_name, :middle_name, :last_name,
-                  :company_name, :address, :contact_number, :plate_number)
+		params.require(:client).permit(:client_code, :status, :name, :address, :contact_number, :plate_number)
   end
 end

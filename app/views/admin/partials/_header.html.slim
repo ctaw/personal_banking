@@ -11,19 +11,18 @@ nav.navbar.navbar-default.navbar-static-top
       ul.nav.navbar-nav
         li class="#{params[:controller] == 'admin/dashboard' ? 'active' : ''}"
           a href="/admin/dashboard"  Home
-        li.dropdown class="#{params[:controller] == 'admin/transaction' ? 'active' : ''} || #{params[:controller] == 'admin/transaction_types' ? 'active' : ''}"
+        li.dropdown class="#{params[:controller] == 'admin/transactions' ? 'active' : ''} || #{params[:controller] == 'admin/transaction_types' ? 'active' : ''}"
           a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
             | Transactions
             span.caret
           ul.dropdown-menu
-            li
-              a href="/admin/transactions"  History
+            li class="#{params[:controller] == 'admin/client_transactions' ? 'active' : ''}"
+              a href="/admin/client_transactions"  Add
             li.divider role="separator"
             li.dropdown-header CRUD
             li class="#{params[:controller] == 'admin/transaction_types' ? 'active' : ''}"
               a href="/admin/transaction_types"  Transaction Types
-            li
-              a href="/admin/clients"  Clients / Company
+
 
 
 

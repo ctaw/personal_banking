@@ -1,23 +1,10 @@
 class CreateTransactions < ActiveRecord::Migration
   def change
-    create_table :clients do |t|
-      t.string :client_code
-      t.integer :status
-      t.string :first_name
-      t.string :middle_name
-      t.string :last_name
-      t.string :company_name
-      t.text :address
-      t.string :contact_number
-      t.timestamps
-    end
-
-    create_table :transactions do |t|
+    create_table :client_payments do |t|
       t.integer :client_id
-      t.string :client_code
-      t.datetime :trasaction_date
-      t.integer :credit_id
-      t.integer :debit_id
+      t.integer :client_transaction_id
+      t.integer :payment_method # Cash or Cheque
+      t.decimal :total_amount
       t.timestamps
     end
 
@@ -27,7 +14,27 @@ class CreateTransactions < ActiveRecord::Migration
       t.timestamps
     end
 
+    create_table :client_transactions do |t|
+      ## CLIENT
+      t.string :client_name
+      t.text :client_address
+      t.string :client_contact_number
+      t.string :plate_number
+      t.datetime :transaction_date
+      t.integer :on_notification
+      t.timestamps
+    end
+
     create_table :credits do |t|
+      t.integer :client_transaction_id
+      t.decimal :amount
+      t.string :transaction_type_id
+      t.text :note
+      t.timestamps
+    end
+
+    create_table :debits do |t|
+      t.integer :client_transaction_id
       t.decimal :amount
       t.string :transaction_type_id
       t.text :note

@@ -1,0 +1,34 @@
+.container
+  .row
+    .page-header
+      h1 Transaction
+      p.lead Client Transaction Show
+    br
+
+  .row
+    .col-md-12
+      .panel.panel-default#divPrint
+        .panel-heading
+          h3.panel-title.main-title Client Information
+        .panel-body
+          .col-md-8
+            .row
+              label.col-lg-3 Name
+              .col-lg-6 = @client_transaction.client_name
+            .row
+              label.col-lg-3 Plate Number
+              .col-lg-6 = @client_transaction.plate_number
+            .row
+              label.col-lg-3 Address
+              .col-lg-6 = @client_transaction.client_address
+            .row
+              label.col-lg-3 Contact Number
+              .col-lg-6 = @client_transaction.client_contact_number
+            .row
+              label.col-lg-3 Transaction Date
+              .col-lg-6 = format_date(@client_transaction.transaction_date)
+
+
+      .btn-group.pull-right aria-label="..." role="group"
+        a.button.btn.btn-default href="/admin/client_transactions" Back
+        a.button.btn.btn-primary href="/admin/client_transactions/#{@client_transaction.id}/edit" Edit

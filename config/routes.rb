@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :dashboard
     resources :transaction_types
     resources :clients
+    resources :client_transactions
+    resources :credits
+    resources :debits
   end
 
 end
