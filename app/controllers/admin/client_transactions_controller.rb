@@ -14,13 +14,21 @@ class Admin::ClientTransactionsController < AdminController
   def create
     @client_transaction = ClientTransaction.new(client_transaction_params)
     if @client_transaction.save
-      redirect_to action: :index
+      redirect_to "/admin/client_transactions/#{@client_transaction.id}"
     else
       render :new
     end
   end
 
   def show
+    # Computation
+    @total_credit = Credit.where(:client_transaction_id => @client_transaction.id).sum(:amount)
+    @total_debit = Debit.where(:client_transaction_id => @client_transaction.id).sum(:amount)
+
+    @profit = (@total_credit.to_f - @total_debit.to_f)
+
+    # Client Histories
+    @client_credits = ClientTransaction.includes(:credits)
   end
 
   def edit
@@ -28,7 +36,7 @@ class Admin::ClientTransactionsController < AdminController
 
   def update
     if @client_transaction.update(client_transaction_params)
-      redirect_to "/admin/client_transactions", :notice => "Data was successfully updated!"
+      redirect_to "/admin/client_transactions/#{@client_transaction.id}", :notice => "Data was successfully updated!"
     else
       render :edit
     end

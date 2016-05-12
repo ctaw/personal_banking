@@ -1,3 +1,3 @@
 class Debit < ActiveRecord::Base
-  belongs_to :client_transaction
+  belongs_to :transaction_type
 end

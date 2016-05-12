@@ -1,0 +1,70 @@
+#add-credit.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+        h4#myModalLabel.modal-title Add Credit Transaction
+      .modal-body
+        =render '/admin/partials/error'
+        = form_for [:admin, @credit], :remote=>true do |f|
+          .form-group
+            = f.text_field :transaction_date, :class=>"form-control required date", :placeholder=>"Transaction Date"
+          .form-group
+            = f.text_field :customer_name, :class=>"form-control required", :placeholder=> "Customer Name"
+          .form-group
+            = f.text_field :contact_number, :class=>"form-control required", :placeholder=> "Contact Number"
+          .form-group
+            = f.text_field :plate_number, :class=>"form-control required", :placeholder=> "Plate Number"
+          .form-group
+            label Transaction Type
+            =f.select(:transaction_type_id, options_from_collection_for_select(@transaction_types,"id","name", f.object.transaction_type_id),{},:class =>"form-control")
+          .form-group
+            = f.text_area :description, :class=>"form-control", :placeholder=> "Description"
+          .form-group
+            = f.text_field :amount, :class=>"form-control required", :placeholder=> "Amount"
+          hr
+          .form-group
+            = f.text_field :reminders_date, :class=>"form-control required date", :placeholder=>"Reminds me On"
+          .form-group
+            = f.text_area :reminders_message, :class=>"form-control", :placeholder=> "Message"
+
+          .modal-footer
+            button.btn.btn-default data-dismiss="modal" type="button" Cancel
+            = f.submit "Save", :class => "btn btn-success"
+
+
+#add-debit.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+        h4#myModalLabel.modal-title Add Debit Transaction
+      .modal-body
+        =render '/admin/partials/error'
+        = form_for [:admin, @debit], :remote=>true do |f|
+          .form-group
+            = f.text_field :transaction_date, :class=>"form-control required date", :placeholder=>"Transaction Date"
+          .form-group
+            = f.text_field :customer_name, :class=>"form-control required", :placeholder=> "Customer Name"
+          .form-group
+            = f.text_field :contact_number, :class=>"form-control required", :placeholder=> "Contact Number"
+          .form-group
+            = f.text_field :plate_number, :class=>"form-control required", :placeholder=> "Plate Number"
+          .form-group
+            label Transaction Type
+            =f.select(:transaction_type_id, options_from_collection_for_select(@transaction_types,"id","name", f.object.transaction_type_id),{},:class =>"form-control")
+          .form-group
+            = f.text_area :description, :class=>"form-control", :placeholder=> "Description"
+          .form-group
+            = f.text_field :amount, :class=>"form-control required", :placeholder=> "Amount"
+          hr
+          .form-group
+            = f.text_field :reminders_date, :class=>"form-control required date", :placeholder=>"Reminds me On"
+          .form-group
+            = f.text_area :reminders_message, :class=>"form-control", :placeholder=> "Message"
+
+          .modal-footer
+            button.btn.btn-default data-dismiss="modal" type="button" Cancel
+            = f.submit "Save", :class => "btn btn-success"

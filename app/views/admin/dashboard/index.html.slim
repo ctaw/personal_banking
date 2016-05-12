@@ -3,61 +3,113 @@
 		.page-header
 		  h1 Dashboard
 		  p.lead KAPSHOP Transactions Keeper
-    .well
-      h4 Welcome Admin!
-      p Cras j usto odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.
 
+		.col-md-6
+			button.btn.btn-primary type="button"
+			  = "Reminders &nbsp;".html_safe
+			  span.badge 4
 br
+
+.row
+	.col-md-12
+		.col-sm-6
+			.input-group.stylish-input-group
+				input.form-control placeholder="Search" type="text" /
+				span.input-group-addon
+					button type="submit"
+						span
+							i.fa.fa-search aria-hidden="true"
+		.col-sm-6
+			form.form-inline
+				.form-group
+					input#from-date.form-control.date placeholder="From (Date)" type="input" /
+				.form-group
+					input#to-date.form-control.date placeholder="To (Date)" type="input" /
+				button.btn.btn-default type="submit"  Search
+
 hr
 br
 
 .row
 	.col-md-12
-		.col-md-7
-			p.title Users
+		-if params[:update] == "success"
+
+			.alert.alert-warning.alert-dismissible.fade.in role="alert"
+			  button.close aria-label="Close" data-dismiss="alert" type="button"
+			    span aria-hidden="true"  ×
+			  | Transaction was successfully added!
+
+		- elsif params[:update] == "error"
+
+			.alert.alert-danger.alert-dismissible.fade.in role="alert"
+				button.close aria-label="Close" data-dismiss="alert" type="button"
+					span aria-hidden="true"  ×
+				| Error please check your input!
+
+		- else
+
+			.alert.alert-danger.alert-dismissible.fade.in.hidden role="alert"
+
+.row
+	.col-md-12
+		.col-md-6
+			.row
+				.col-xs-6
+					p.title Credits
+				.col-xs-6
+					a.btn.btn-sm.btn-primary.pull-right data-toggle="modal" data-target="#add-credit" Add Transaction
 			.table-responsive
 				table.table.table-bordered.table-striped
 					thead
 						tr
-							th ID
-							th Email
+							th Transaction
+							th Client
+							th Amount
 							th
 					tbody
-						-if @users == []
+						-if @credits == []
 							tr
-								td colspan="3" No records
+								td colspan="4" No records
 						-else
-						 - @users.each do |u|
+						 - @credits.each do |c|
 							 tr
-								td = u.id
-								td = u.email
+								td = c.transaction_type.name
+								td = c.customer_name
+								td = number_to_currency(c.amount, :unit => "₱ ")
 								td style=('width: 2%;')
-									a href="users/#{u.id}"
+									a href=""
 										i.fa.fa-eye
-				=will_paginate @users, :param_name=>"users",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
+				=will_paginate @credits, :param_name=>"credits",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
 
-		.col-md-5
+		.col-md-6
 			.row
-				p.title Transaction Types
-			.row
-				.table-responsive
-					table.table.table-bordered.table-striped
-						thead
+				.col-xs-6
+					p.title Debits
+				.col-xs-6
+					a.btn.btn-sm.btn-primary.pull-right data-toggle="modal" data-target="#add-debit" Add Transaction
+
+			.table-responsive
+				table.table.table-bordered.table-striped
+					thead
+						tr
+							th Transaction
+							th Client
+							th Amount
+							th
+					tbody
+						-if @debits == []
 							tr
-								th ID
-								th Name
-								th
-						tbody
-							-if @transaction_types == []
-								tr
-									td colspan="3" No records
-							-else
-							 - @transaction_types.each do |tt|
-								 tr
-									td = tt.id
-									td = tt.name
-									td style=('width: 2%;')
-										a href="transaction_types/#{tt.id}"
-											i.fa.fa-eye
+								td colspan="4" No records
+						-else
+						 - @debits.each do |d|
+							 tr
+								td = d.transaction_type.name
+								td = d.customer_name
+								td = number_to_currency(d.amount, :unit => "₱ ")
+								td style=('width: 2%;')
+									a href=""
+										i.fa.fa-eye
+				=will_paginate @debits, :param_name=>"debits",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
 
-					=will_paginate @transaction_types, :param_name=>"transaction_types",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
+
+=render 'add_transaction'

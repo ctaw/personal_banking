@@ -16,41 +16,30 @@ ActiveRecord::Schema.define(version: 20160426063405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "client_payments", force: :cascade do |t|
-    t.integer  "client_id"
-    t.integer  "client_transaction_id"
-    t.integer  "payment_method"
-    t.decimal  "total_amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "client_transactions", force: :cascade do |t|
-    t.string   "client_name"
-    t.text     "client_address"
-    t.string   "client_contact_number"
-    t.string   "plate_number"
-    t.datetime "transaction_date"
-    t.integer  "on_notification"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "credits", force: :cascade do |t|
-    t.integer  "client_transaction_id"
+    t.datetime "transaction_date"
+    t.string   "customer_name"
+    t.string   "contact_number"
+    t.string   "plate_number"
+    t.integer  "transaction_type_id"
+    t.string   "description"
     t.decimal  "amount"
-    t.string   "transaction_type_id"
-    t.text     "note"
+    t.datetime "reminders_date"
+    t.text     "reminders_message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "debits", force: :cascade do |t|
-    t.integer  "client_transaction_id"
+    t.datetime "transaction_date"
+    t.string   "customer_name"
+    t.string   "contact_number"
+    t.string   "plate_number"
+    t.integer  "transaction_type_id"
+    t.string   "description"
     t.decimal  "amount"
-    t.string   "transaction_type_id"
-    t.text     "note"
-    t.integer  "on_notification"
+    t.datetime "reminders_date"
+    t.text     "reminders_message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
