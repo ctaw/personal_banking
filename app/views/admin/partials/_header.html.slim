@@ -16,8 +16,6 @@ nav.navbar.navbar-default.navbar-static-top
           ul.dropdown-menu
             li class="#{params[:controller] == 'admin/dashboard' ? 'active' : ''}"
               a href="/admin/dashboard"  Dashboard
-            li class="#{params[:controller] == 'admin/client_transactions' ? 'active' : ''}"
-              a href="/admin/client_transactions"  Transactions
             li.divider role="separator"
             li.dropdown-header CRUD
             li class="#{params[:controller] == 'admin/transaction_types' ? 'active' : ''}"

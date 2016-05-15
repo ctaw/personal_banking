@@ -19,7 +19,7 @@
     .pull-right
       p.emphasize-text = "Date Range: #{params[:start_date]} to #{params[:end_date]}"
       br
-    
+
 
 .row
 	.col-md-12
@@ -44,7 +44,9 @@
 								td = cc.transaction_type.name
 								td = cc.customer_name
 								td = number_to_currency(cc.amount, :unit => "₱ ")
-				=will_paginate @all_credit_customers, :param_name=>"all_credit_customers",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
+
+				p.pull-right.emphasize-text = "Total: #{number_to_currency(@total_credit, :unit => "PHP ")}"
+        =will_paginate @all_credit_customers, :param_name=>"all_credit_customers",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
 
 		.col-md-6
 			.row
@@ -67,4 +69,5 @@
 								td = dc.transaction_type.name
 								td = dc.customer_name
 								td = number_to_currency(dc.amount, :unit => "₱ ")
-				=will_paginate @all_debit_customers, :param_name=>"all_debit_customers",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
+        p.pull-right.emphasize-text = "Total: #{number_to_currency(@total_debit, :unit => "PHP ")}"
+        =will_paginate @all_debit_customers, :param_name=>"all_debit_customers",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe

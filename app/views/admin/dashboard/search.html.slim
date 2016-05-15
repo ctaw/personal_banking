@@ -37,6 +37,7 @@
 								td = cc.transaction_type.name
 								td = cc.customer_name
 								td = number_to_currency(cc.amount, :unit => "₱ ")
+				p.pull-right.emphasize-text = "Total: #{number_to_currency(@customer_credit_total, :unit => "PHP ")}"
 				=will_paginate @credit_customers, :param_name=>"credit_customers",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
 
 		.col-md-6
@@ -60,4 +61,5 @@
 								td = dc.transaction_type.name
 								td = dc.customer_name
 								td = number_to_currency(dc.amount, :unit => "₱ ")
+				p.pull-right.emphasize-text = "Total: #{number_to_currency(@customer_debit_total, :unit => "PHP ")}"
 				=will_paginate @debit_customers, :param_name=>"debit_customers",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
