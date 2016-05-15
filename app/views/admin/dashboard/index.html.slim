@@ -5,26 +5,28 @@
 		  p.lead KAPSHOP Transactions Keeper
 
 		.col-md-6
-			button.btn.btn-primary type="button"
+			a.btn.btn-primary href="/admin/reminders"
 			  = "Reminders &nbsp;".html_safe
-			  span.badge 4
+			  span.badge = @credit_reminders
 br
+
 
 .row
 	.col-md-12
 		.col-sm-6
-			.input-group.stylish-input-group
-				input.form-control placeholder="Search" type="text" /
-				span.input-group-addon
-					button type="submit"
-						span
-							i.fa.fa-search aria-hidden="true"
+			= form_tag(search_admin_dashboard_index_path, :html => {:class => "form-horizontal form-border"}, :method => :get)
+				.input-group.stylish-input-group
+					= text_field_tag :search, params[:search], placeholder: "Search Customer", :class=>"form-control"
+					span.input-group-addon
+						button type="submit"
+							span
+								i.fa.fa-search aria-hidden="true"
 		.col-sm-6
-			form.form-inline
+			= form_tag date_range_admin_dashboard_index_path, method: :get, :class => "form-inline" do
 				.form-group
-					input#from-date.form-control.date placeholder="From (Date)" type="input" /
+					= text_field_tag :start_date, params[:start_date], placeholder: "From (Date)", :class=>"form-control date"
 				.form-group
-					input#to-date.form-control.date placeholder="To (Date)" type="input" /
+					= text_field_tag :end_date, params[:end_date], placeholder: "To (Date)", :class=>"form-control date"
 				button.btn.btn-default type="submit"  Search
 
 hr
@@ -65,20 +67,16 @@ br
 							th Transaction
 							th Client
 							th Amount
-							th
 					tbody
 						-if @credits == []
 							tr
-								td colspan="4" No records
+								td colspan="3" No records
 						-else
 						 - @credits.each do |c|
 							 tr
 								td = c.transaction_type.name
 								td = c.customer_name
 								td = number_to_currency(c.amount, :unit => "₱ ")
-								td style=('width: 2%;')
-									a href=""
-										i.fa.fa-eye
 				=will_paginate @credits, :param_name=>"credits",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
 
 		.col-md-6
@@ -95,20 +93,16 @@ br
 							th Transaction
 							th Client
 							th Amount
-							th
 					tbody
 						-if @debits == []
 							tr
-								td colspan="4" No records
+								td colspan="3" No records
 						-else
 						 - @debits.each do |d|
 							 tr
 								td = d.transaction_type.name
 								td = d.customer_name
 								td = number_to_currency(d.amount, :unit => "₱ ")
-								td style=('width: 2%;')
-									a href=""
-										i.fa.fa-eye
 				=will_paginate @debits, :param_name=>"debits",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
 
 

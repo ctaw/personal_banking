@@ -5,12 +5,17 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   namespace :admin do
-    resources :dashboard
+    resources :dashboard do
+      collection do
+        get "search"
+        get "date_range"
+      end
+    end
     resources :transaction_types
-    resources :clients
-    resources :client_transactions
     resources :credits
     resources :debits
+    resources :transactions
+    resources :reminders
   end
 
 end

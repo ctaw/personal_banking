@@ -1,0 +1,36 @@
+.container
+	.row
+		.col-md-12
+			.page-header
+			  h1 Transaction History
+			  p.lead KAPSHOP Transactions Keeper
+
+
+	.row
+	  .col-md-12
+			.pull-left
+				a.btn.btn-default href="/admin/dashboard" Back
+			br
+			br
+			br
+			.table-responsive
+				table.table.table-bordered.table-striped
+					thead
+						tr
+							th Transaction
+							th Client
+							th Amount
+							th
+					tbody
+						-if @customers == []
+							tr
+								td colspan="4" No records
+						-else
+						 - @customers.each do |c|
+							 tr
+								td = c.transaction_type.name
+								td = c.customer_name
+								td = number_to_currency(c.amount, :unit => "₱ ")
+								td style=('width: 2%;')
+									a href=""
+										i.fa.fa-eye
