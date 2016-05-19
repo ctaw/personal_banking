@@ -1,0 +1,52 @@
+.container
+	.col-md-3.pull-right
+		h4.green-text = "Total: #{number_to_currency(@total_profit, :unit => '₱ ')}"
+	.header-row
+		a.btn.btn-primary href="/admin/reminders"
+		  = "Reminders &nbsp;".html_safe
+		  span.badge = @credit_reminders
+br
+
+
+.row
+	.col-md-12
+		.col-sm-6
+			= form_tag(search_admin_dashboard_index_path, :html => {:class => "form-horizontal form-border"}, :method => :get)
+				.input-group.stylish-input-group
+					= text_field_tag :search, params[:search], placeholder: "Search Customer", :class=>"form-control"
+
+					span.input-group-addon
+						button type="submit"
+							span
+								i.fa.fa-search aria-hidden="true"
+		.col-sm-6
+			= form_tag date_range_admin_dashboard_index_path, method: :get, :class => "form-inline" do
+				.form-group
+					= text_field_tag :start_date, params[:start_date], placeholder: "From (Date)", :class=>"form-control date"
+				.form-group
+					= text_field_tag :end_date, params[:end_date], placeholder: "To (Date)", :class=>"form-control date"
+				button.btn.btn-default type="submit"  Search
+
+br
+hr
+br
+
+.row
+	.col-md-12
+		-if (params[:update] == "added") || (params[:update] == "updated") || (params[:update] == "deleted")
+
+			.alert.alert-warning.alert-dismissible.fade.in role="alert"
+			  button.close aria-label="Close" data-dismiss="alert" type="button"
+			    span aria-hidden="true"  ×
+			  = "Transaction was successfully #{params[:update]}"
+
+		- elsif params[:update] == "error"
+
+			.alert.alert-danger.alert-dismissible.fade.in role="alert"
+				button.close aria-label="Close" data-dismiss="alert" type="button"
+					span aria-hidden="true"  ×
+				| Error please check your input!
+
+		- else
+
+			.alert.alert-danger.alert-dismissible.fade.in.hidden role="alert"

@@ -1,57 +1,4 @@
-.container
-	.row
-		.page-header
-		  h1 Dashboard
-		  p.lead KAPSHOP Transactions Keeper
-
-		.col-md-6
-			a.btn.btn-primary href="/admin/reminders"
-			  = "Reminders &nbsp;".html_safe
-			  span.badge = @credit_reminders
-br
-
-
-.row
-	.col-md-12
-		.col-sm-6
-			= form_tag(search_admin_dashboard_index_path, :html => {:class => "form-horizontal form-border"}, :method => :get)
-				.input-group.stylish-input-group
-					= text_field_tag :search, params[:search], placeholder: "Search Customer", :class=>"form-control"
-					span.input-group-addon
-						button type="submit"
-							span
-								i.fa.fa-search aria-hidden="true"
-		.col-sm-6
-			= form_tag date_range_admin_dashboard_index_path, method: :get, :class => "form-inline" do
-				.form-group
-					= text_field_tag :start_date, params[:start_date], placeholder: "From (Date)", :class=>"form-control date"
-				.form-group
-					= text_field_tag :end_date, params[:end_date], placeholder: "To (Date)", :class=>"form-control date"
-				button.btn.btn-default type="submit"  Search
-
-hr
-br
-
-.row
-	.col-md-12
-		-if params[:update] == "success"
-
-			.alert.alert-warning.alert-dismissible.fade.in role="alert"
-			  button.close aria-label="Close" data-dismiss="alert" type="button"
-			    span aria-hidden="true"  ×
-			  | Transaction was successfully added!
-
-		- elsif params[:update] == "error"
-
-			.alert.alert-danger.alert-dismissible.fade.in role="alert"
-				button.close aria-label="Close" data-dismiss="alert" type="button"
-					span aria-hidden="true"  ×
-				| Error please check your input!
-
-		- else
-
-			.alert.alert-danger.alert-dismissible.fade.in.hidden role="alert"
-
+= render 'search_component'
 .row
 	.col-md-12
 		.col-md-6
@@ -67,6 +14,7 @@ br
 							th Transaction
 							th Client
 							th Amount
+							th
 					tbody
 						-if @credits == []
 							tr
@@ -77,6 +25,9 @@ br
 								td = c.transaction_type.name
 								td = c.customer_name
 								td = number_to_currency(c.amount, :unit => "₱ ")
+								td style=('width: 2%;')
+									a href="/admin/credits/#{c.id}"
+										i.fa.fa-eye
 				p.pull-right.emphasize-text = "Total: #{number_to_currency(@credit_sum, :unit => "PHP ")}"
 				=will_paginate @credits, :param_name=>"credits",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
 
@@ -94,6 +45,7 @@ br
 							th Transaction
 							th Client
 							th Amount
+							th
 					tbody
 						-if @debits == []
 							tr
@@ -104,6 +56,9 @@ br
 								td = d.transaction_type.name
 								td = d.customer_name
 								td = number_to_currency(d.amount, :unit => "₱ ")
+								td style=('width: 2%;')
+									a href="/admin/debits/#{d.id}"
+										i.fa.fa-eye
 				p.pull-right.emphasize-text = "Total: #{number_to_currency(@debit_sum, :unit => "PHP ")}"
 				=will_paginate @debits, :param_name=>"debits",:previous_label => '<i class="fa fa-chevron-left"></i>'.html_safe, :next_label => '<i class="fa fa-chevron-right"></i>'.html_safe
 
