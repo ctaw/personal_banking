@@ -28,7 +28,7 @@
 						-else
 						 - @customers.each do |c|
 							 tr
-								td = c.transaction_type.name
+								td = c.transaction_type
 								td = c.customer_name
 								td = number_to_currency(c.amount, :unit => "₱ ")
 								td style=('width: 2%;')

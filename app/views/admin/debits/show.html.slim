@@ -19,7 +19,7 @@
           hr
           .row
             label.col-lg-3 Transaction
-            .col-lg-6 = @debit.transaction_type.name
+            .col-lg-6 = @debit.transaction_type
           .row
             label.col-lg-3 Date
             .col-lg-6 = format_date(@debit.transaction_date)
@@ -29,6 +29,14 @@
           .row
             label.col-lg-3 Amount
             .col-lg-6.emphasize-text = number_to_currency(@debit.amount, :unit => "₱ ")
+          hr
+          .row
+            label.col-lg-3 Reminder's Message
+            .col-lg-6 = @debit.reminders_message
+          .row
+            label.col-lg-3 Reminder's Date
+            .col-lg-6 = format_date(@debit.reminders_date)
+
 
     .btn-group.pull-right aria-label="..." role="group"
       a.button.btn.btn-default href="/admin/dashboard" Back

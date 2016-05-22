@@ -1,4 +1,4 @@
 class TransactionType < ActiveRecord::Base
-  has_many :credits
-  has_many :debits
+  # has_many :credits
+  # has_many :debits
 end

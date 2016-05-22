@@ -19,7 +19,7 @@
           hr
           .row
             label.col-lg-3 Transaction
-            .col-lg-6 = @credit.transaction_type.name
+            .col-lg-6 = @credit.transaction_type
           .row
             label.col-lg-3 Date
             .col-lg-6 = format_date(@credit.transaction_date)
@@ -29,6 +29,13 @@
           .row
             label.col-lg-3 Amount
             .col-lg-6.emphasize-text = number_to_currency(@credit.amount, :unit => "₱ ")
+          hr
+          .row
+            label.col-lg-3 Reminder's Message
+            .col-lg-6 = @credit.reminders_message
+          .row
+            label.col-lg-3 Reminder's Date
+            .col-lg-6 = format_date(@credit.reminders_date)
 
     .btn-group.pull-right aria-label="..." role="group"
       a.button.btn.btn-default href="/admin/dashboard" Back

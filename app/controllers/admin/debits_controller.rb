@@ -48,7 +48,7 @@ class Admin::DebitsController < AdminController
 
   def debit_params
 		params.require(:debit).permit(:transaction_date, :customer_name, :contact_number, :plate_number,
-																	 :transaction_type_id, :description, :amount, :reminders_date, :reminders_message)
+																	 :transaction_type, :description, :amount, :reminders_date, :reminders_message)
 	end
 
 end

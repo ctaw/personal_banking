@@ -17,9 +17,9 @@
 				table.table.table-bordered.table-striped
 					thead
 						tr
-							th Transaction
-							th Client
-							th Amount
+							th Customer Name
+							th Message
+							th Date
 					tbody
 						-if @credit_reminders == []
 							tr
@@ -27,6 +27,6 @@
 						-else
 						 - @credit_reminders.each do |cr|
 							 tr
-								td = cr.transaction_type.name
 								td = cr.customer_name
-								td = number_to_currency(cr.amount, :unit => "₱ ")
+								td = cr.reminders_message
+								td = format_date(cr.reminders_date)

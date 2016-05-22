@@ -41,7 +41,7 @@
 						-else
 						 - @all_credit_customers.each do |cc|
 							 tr
-								td = cc.transaction_type.name
+								td = cc.transaction_type
 								td = cc.customer_name
 								td = number_to_currency(cc.amount, :unit => "₱ ")
 
@@ -66,7 +66,7 @@
 						-else
 						 - @all_debit_customers.each do |dc|
 							 tr
-								td = dc.transaction_type.name
+								td = dc.transaction_type
 								td = dc.customer_name
 								td = number_to_currency(dc.amount, :unit => "₱ ")
         p.pull-right.emphasize-text = "Total: #{number_to_currency(@total_debit, :unit => "PHP ")}"

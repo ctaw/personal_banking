@@ -7,8 +7,8 @@ class Admin::DashboardController < AdminController
     @d_tol = Debit.sum(:amount)
     @total_profit = (@c_tol.to_f - @d_tol.to_f)
     @credit_reminders = Credit.where(:reminders_date => DateTime.now.to_date).count
-    @credits = Credit.select("id, customer_name, transaction_type_id, amount").order("id DESC").paginate(:page => params[:credits], :per_page => 5)
-    @debits = Debit.select("id, customer_name, transaction_type_id, amount").order("id DESC").paginate(:page => params[:credits], :per_page => 5)
+    @credits = Credit.select("id, customer_name, transaction_type, amount").order("id DESC").paginate(:page => params[:credits], :per_page => 5)
+    @debits = Debit.select("id, customer_name, transaction_type, amount").order("id DESC").paginate(:page => params[:credits], :per_page => 5)
     @credit_sum = Credit.sum(:amount)
     @debit_sum = Debit.sum(:amount)
     @credit = Credit.new

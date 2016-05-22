@@ -8,11 +8,11 @@ class CreateTransactions < ActiveRecord::Migration
     #   t.timestamps
     # end
 
-    create_table :transaction_types do |t|
-      t.string :name
-      t.text :description
-      t.timestamps
-    end
+    # create_table :transaction_types do |t|
+    #   t.string :name
+    #   t.text :description
+    #   t.timestamps
+    # end
 
     # create_table :client_transactions do |t|
     #   ## CLIENT
@@ -30,7 +30,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.string :customer_name
       t.string :contact_number
       t.string :plate_number
-      t.integer :transaction_type_id
+      t.string :transaction_type
       t.string :description
       t.decimal :amount
       t.datetime :reminders_date
@@ -43,7 +43,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.string :customer_name
       t.string :contact_number
       t.string :plate_number
-      t.integer :transaction_type_id
+      t.string :transaction_type
       t.string :description
       t.decimal :amount
       t.datetime :reminders_date

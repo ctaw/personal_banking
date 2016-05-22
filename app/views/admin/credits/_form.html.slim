@@ -8,34 +8,50 @@
           .col-md-6
             .form-group
               .col-sm-12
+                label Transaction Date
+              .col-sm-12
                 = f.text_field :transaction_date, :class=>"form-control required date", :placeholder=>"Transaction Date"
             .form-group
+              .col-sm-12
+                label Customer Name
               .col-sm-12
                 = f.text_field :customer_name, :class=>"form-control required", :placeholder=> "Customer Name"
             .form-group
               .col-sm-12
+                label Contact Number
+              .col-sm-12
                 = f.text_field :contact_number, :class=>"form-control required", :placeholder=> "Contact Number"
             .form-group
+              .col-sm-12
+                label Plate Number
               .col-sm-12
                 = f.text_field :plate_number, :class=>"form-control required", :placeholder=> "Plate Number"
             .form-group
               .col-sm-12
                 label Transaction Type
               .col-sm-12
-                =f.select(:transaction_type_id, options_from_collection_for_select(@transaction_types,"id","name", f.object.transaction_type_id),{},:class =>"form-control")
-
+                = f.text_field :transaction_type, :class=>"form-control required", :placeholder=> "Transaction Type"
+                
           .col-md-6
             .form-group
               .col-sm-12
+                label Description
+              .col-sm-12
                 = f.text_area :description, :class=>"form-control", :placeholder=> "Description"
             .form-group
+              .col-sm-12
+                label Amount
               .col-sm-12
                 = f.text_field :amount, :class=>"form-control required", :placeholder=> "Amount"
             hr
             .form-group
               .col-sm-12
+                label Reminders Date
+              .col-sm-12
                 = f.text_field :reminders_date, :class=>"form-control required date", :placeholder=>"Reminds me On"
             .form-group
+              .col-sm-12
+                label Reminders Message
               .col-sm-12
                 = f.text_area :reminders_message, :class=>"form-control", :placeholder=> "Message"
           .row

@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160426063405) do
     t.string   "customer_name"
     t.string   "contact_number"
     t.string   "plate_number"
-    t.integer  "transaction_type_id"
+    t.string   "transaction_type"
     t.string   "description"
     t.decimal  "amount"
     t.datetime "reminders_date"
@@ -35,18 +35,11 @@ ActiveRecord::Schema.define(version: 20160426063405) do
     t.string   "customer_name"
     t.string   "contact_number"
     t.string   "plate_number"
-    t.integer  "transaction_type_id"
+    t.string   "transaction_type"
     t.string   "description"
     t.decimal  "amount"
     t.datetime "reminders_date"
     t.text     "reminders_message"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "transaction_types", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

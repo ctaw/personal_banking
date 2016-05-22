@@ -9,17 +9,8 @@ nav.navbar.navbar-default.navbar-static-top
       a.navbar-brand href="/admin/dashboard"  KapShop
     #navbar.navbar-collapse.collapse
       ul.nav.navbar-nav
-        li.dropdown class="#{params[:controller] == 'admin/dashboard' ? 'active' : ''}"
-          a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            | Home
-            span.caret
-          ul.dropdown-menu
-            li class="#{params[:controller] == 'admin/dashboard' ? 'active' : ''}"
-              a href="/admin/dashboard"  Dashboard
-            li.divider role="separator"
-            li.dropdown-header CRUD
-            li class="#{params[:controller] == 'admin/transaction_types' ? 'active' : ''}"
-              a href="/admin/transaction_types"  Transaction Types
+        li class="#{params[:controller] == 'admin/dashboard' ? 'active' : ''}"
+          a href="/admin/dashboard"  Dashboard
 
       ul.nav.navbar-nav.navbar-right
         li.active

@@ -18,11 +18,11 @@
 					tbody
 						-if @credits == []
 							tr
-								td colspan="3" No records
+								td colspan="4" No records
 						-else
 						 - @credits.each do |c|
 							 tr
-								td = c.transaction_type.name
+								td = c.transaction_type
 								td = c.customer_name
 								td = number_to_currency(c.amount, :unit => "₱ ")
 								td style=('width: 2%;')
@@ -49,11 +49,11 @@
 					tbody
 						-if @debits == []
 							tr
-								td colspan="3" No records
+								td colspan="4" No records
 						-else
 						 - @debits.each do |d|
 							 tr
-								td = d.transaction_type.name
+								td = d.transaction_type
 								td = d.customer_name
 								td = number_to_currency(d.amount, :unit => "₱ ")
 								td style=('width: 2%;')

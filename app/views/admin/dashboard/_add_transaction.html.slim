@@ -17,8 +17,7 @@
           .form-group
             = f.text_field :plate_number, :class=>"form-control required", :placeholder=> "Plate Number"
           .form-group
-            label Transaction Type
-            =f.select(:transaction_type_id, options_from_collection_for_select(@transaction_types,"id","name", f.object.transaction_type_id),{},:class =>"form-control")
+            = f.text_field :transaction_type, :class=>"form-control required", :placeholder=> "Transaction Type"
           .form-group
             = f.text_area :description, :class=>"form-control", :placeholder=> "Description"
           .form-group
@@ -39,7 +38,7 @@
     .modal-content
       .modal-header
         button.close aria-label="Close" data-dismiss="modal" type="button"
-          span aria-hidden="true"  &times;
+          span ariia-hidden="true"  &times;
         h4#myModalLabel.modal-title Add Debit Transaction
       .modal-body
         =render '/admin/partials/error'
@@ -53,8 +52,7 @@
           .form-group
             = f.text_field :plate_number, :class=>"form-control required", :placeholder=> "Plate Number"
           .form-group
-            label Transaction Type
-            =f.select(:transaction_type_id, options_from_collection_for_select(@transaction_types,"id","name", f.object.transaction_type_id),{},:class =>"form-control")
+            = f.text_field :transaction_type, :class=>"form-control required", :placeholder=> "Transaction Type"
           .form-group
             = f.text_area :description, :class=>"form-control", :placeholder=> "Description"
           .form-group
