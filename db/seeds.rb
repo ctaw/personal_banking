@@ -1,3 +1,3 @@
 if User.all.blank?
-  User.create(:email => 'admin@kapshop.com', :password => 'password', :password_confirmation => 'password')
+  User.create(:email => 'tawcharlene@gmail.com', :password => 'ctaw1991', :password_confirmation => 'ctaw1991')
 end

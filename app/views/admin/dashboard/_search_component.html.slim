@@ -1,10 +1,7 @@
 .container
 	.col-md-3.pull-right
 		h4.green-text = "Total: #{number_to_currency(@total_profit, :unit => '₱ ')}"
-	.header-row
-		a.btn.btn-primary href="/admin/reminders"
-		  = "Reminders &nbsp;".html_safe
-		  span.badge = @credit_reminders
+
 br
 
 
@@ -13,7 +10,7 @@ br
 		.col-sm-6
 			= form_tag(search_admin_dashboard_index_path, :html => {:class => "form-horizontal form-border"}, :method => :get)
 				.input-group.stylish-input-group
-					= text_field_tag :search, params[:search], placeholder: "Search Customer", :class=>"form-control"
+					= text_field_tag :search, params[:search], placeholder: "Search Company or Client", :class=>"form-control"
 
 					span.input-group-addon
 						button type="submit"

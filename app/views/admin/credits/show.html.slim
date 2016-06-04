@@ -8,14 +8,8 @@
       .panel-body
         .col-md-12
           .row
-            label.col-lg-3 Customer Name
+            label.col-lg-3 Client or Company
             .col-lg-6 = @credit.customer_name
-          .row
-            label.col-lg-3 Plate Number
-            .col-lg-6 = @credit.plate_number
-          .row
-            label.col-lg-3 Contact Number
-            .col-lg-6 = @credit.contact_number
           hr
           .row
             label.col-lg-3 Transaction
@@ -29,13 +23,6 @@
           .row
             label.col-lg-3 Amount
             .col-lg-6.emphasize-text = number_to_currency(@credit.amount, :unit => "₱ ")
-          hr
-          .row
-            label.col-lg-3 Reminder's Message
-            .col-lg-6 = @credit.reminders_message
-          .row
-            label.col-lg-3 Reminder's Date
-            .col-lg-6 = format_date(@credit.reminders_date)
 
     .btn-group.pull-right aria-label="..." role="group"
       a.button.btn.btn-default href="/admin/dashboard" Back

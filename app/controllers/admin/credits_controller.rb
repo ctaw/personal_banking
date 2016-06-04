@@ -47,8 +47,8 @@ class Admin::CreditsController < AdminController
   end
 
   def credit_params
-		params.require(:credit).permit(:transaction_date, :customer_name, :contact_number, :plate_number,
-																	 :transaction_type, :description, :amount, :reminders_date, :reminders_message)
+		params.require(:credit).permit(:transaction_date,
+																	 :transaction_type, :customer_name, :description, :amount)
 	end
 
 end
